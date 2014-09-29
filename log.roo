@@ -1,0 +1,11 @@
+// Spring Roo 1.2.5.RELEASE [rev 8341dc2] log opened at 2014-09-29 16:44:05
+project --topLevelPackage com.enniu.loan
+hint
+jpa setup --provider HIBERNATE --database MYSQL --databaseName loan --userName root 
+hint
+// [failed] entity jpa --class com.enniu.loan.domain.User 
+hint
+entity jpa --class com.enniu.loan.domain.Admin 
+hint
+web mvc setup
+web mvc controller --class ~.web.service.Order 
