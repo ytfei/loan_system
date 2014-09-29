@@ -9,3 +9,4 @@ entity jpa --class com.enniu.loan.domain.Admin
 hint
 web mvc setup
 web mvc controller --class ~.web.service.Order 
+web mvc controller --class ~.service.Admin
