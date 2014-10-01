@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <classPathEntry location="mysql-connector-java-5.1.33-bin.jar"/>
+
+    <context id="MySQLTables" targetRuntime="MyBatis3">
+
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$"/>
+            <property name="replaceString" value="Criteria"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/loan"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="com.enniu.loan.domain" targetProject="../src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.enniu.loan.persistence" targetProject="../src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.enniu.loan.persistence"
+                             targetProject="../src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table schema="loan" tableName="loan_order" domainObjectName="LoanOrder">
+            <!--
+            <property name="useActualColumnNames" value="true"/>
+            <generatedKey column="ID" sqlStatement="MySQL" identity="true" />
+            <columnOverride column="DATE_FIELD" property="startDate" />
+            <ignoreColumn column="FRED" />
+            <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />
+            -->
+        </table>
+
+        <table schema="loan" tableName="interest_penalty_log" domainObjectName="InterestPenaltyLog"/>
+        <table schema="loan" tableName="repayment_log" domainObjectName="RepaymentLog"/>
+
+        <table schema="loan" tableName="repayment_schedule" domainObjectName="RepaymentSchedule"/>
+        <table schema="loan" tableName="withhold_log" domainObjectName="WithholdLog"/>
+        <table schema="loan" tableName="withhold_order" domainObjectName="WithholdOrder"/>
+    </context>
+</generatorConfiguration>
+
