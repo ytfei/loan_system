@@ -29,7 +29,7 @@ public class Admin {
     @RequestMapping
     public String index() {
         LoanOrderCriteria criteria = new LoanOrderCriteria();
-        criteria.or().andAmountEqualTo(100L);
+        criteria.or().andAmountEqualTo(100.0);
 
         List<LoanOrder> orderList = loanOrderMapper.selectByCriteria(criteria);
 
@@ -38,7 +38,7 @@ public class Admin {
         // ========
 
         criteria.clear();
-        criteria.or().andAmountEqualTo(new BigDecimal(99));
+        criteria.or().andAmountEqualTo(99.0);
         orderList = loanOrderMapper.selectByCriteria(criteria);
 
         checkResult(orderList);

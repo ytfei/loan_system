@@ -16,22 +16,22 @@ create table loan_object (
 	user_id integer unsigned not null,
 
 	-- 借款总金额
-	amount decimal(18,7) unsigned not null,
+	amount double(30, 7) unsigned not null,
 
 	-- 借款总期数
 	total_period tinyint unsigned not null,
 
 	-- 总利息（总利息指的是什么，和其它的利息有什么关联？）
-	interest decimal(18,7) unsigned not null,
+	interest double(30, 7) unsigned not null,
 
 	-- 出借人适用利率
-	interest_lender decimal(18,7) unsigned not null,
+	interest_lender double(30, 7) unsigned not null,
 
 	-- 51 平台适用利率
-	interest_enniu decimal(18,7) unsigned not null,
+	interest_enniu double(30, 7) unsigned not null,
 
 	-- p2p 平台适用利率
-	interest_p2p decimal(18,7) unsigned not null,
+	interest_p2p double(30, 7) unsigned not null,
 
 	-- 借款人卡号
 	-- 在目前的版本中，暂时只支付信用卡，但后续可能会增加储蓄卡（当支持现金借款时）
@@ -74,7 +74,7 @@ create table loan_order(
 	credit_card bigint unsigned not null default 0,
 	deposit_card bigint unsigned not null default 0,
 
-	amount decimal(18,7),
+	amount double(30, 7),
 
 	-- 状态标识
 	-- 1 正常还款
@@ -106,17 +106,17 @@ create table repayment_schedule(
 	due_at	timestamp default 0 not null, 	-- 还款计划结束日期
 	repay_at timestamp default 0 not null,	-- 扣款日期，默认应为结束日期前一工作日
 
-	capital decimal(18,7) not null,  -- 应还本金
-	interest decimal(18,7) not null default 0, -- 应还利息
-	gratuity decimal(18,7) not null default 0, -- 应还服务费
-	penalty decimal(18,7) not null default 0, -- 应还罚息
+	capital double(30, 7) not null,  -- 应还本金
+	interest double(30, 7) not null default 0, -- 应还利息
+	gratuity double(30, 7) not null default 0, -- 应还服务费
+	penalty double(30, 7) not null default 0, -- 应还罚息
 
-	repaid_capital decimal(18,7) not null default 0,
-	repaid_interest decimal(18,7) not null default 0,
-	repaid_gratuity decimal(18,7) not null default 0,
-	repaid_penalty decimal(18,7) not null default 0,
+	repaid_capital double(30, 7) not null default 0,
+	repaid_interest double(30, 7) not null default 0,
+	repaid_gratuity double(30, 7) not null default 0,
+	repaid_penalty double(30, 7) not null default 0,
 
-	exemption decimal(18,7) not null default 0, -- 协商后豁免的金额
+	exemption double(30, 7) not null default 0, -- 协商后豁免的金额
 
 	-- 是否还清，非零表示已还清
 	is_clear tinyint unsigned not null default 0,
@@ -168,7 +168,7 @@ create table withhold_log (
 	-- 这个ID是应该放在哪里呢？
 	withhold_order_id integer unsigned not null,
 
-	amount decimal(18,7) not null,
+	amount double(30, 7) not null,
 	result varchar(70),	
 	description varchar(70),
 
@@ -184,7 +184,7 @@ create table repayment_log (
 	repayment_schedule_id integer unsigned not null,
 	withhold_log_id integer unsigned not null,
 
-	repaid_amount decimal(18,7) not null default 0,
+	repaid_amount double(30, 7) not null default 0,
 
 	-- 这个类型有问题，一次还款可以是多种类型啊？？
 	-- 1 本金
@@ -211,7 +211,7 @@ create table interest_penalty_log (
 	loan_order_id integer unsigned not null,
 	repayment_schedule_id integer unsigned not null,
 
-	penalty_amount decimal(18,7) not null default 0,
+	penalty_amount double(30, 7) not null default 0,
 
 	-- 罚息变更类型
 	-- 1 系统自动生成
@@ -250,7 +250,7 @@ create table system_account (
 	bank varchar(100) not null, -- 开户行
 	name varchar(100) not null, -- 开户主
 	account bigint unsigned not null, -- 账户号
-	balance decimal(18,7) not null default 0, -- 余额
+	balance double(30, 7) not null default 0, -- 余额
 
 	-- 账户类型
 	-- 0 未知
