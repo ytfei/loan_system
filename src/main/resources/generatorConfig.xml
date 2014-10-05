@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <classPathEntry location="mysql-connector-java-5.1.33-bin.jar"/>
+    <classPathEntry location="./mybatis-generator/mysql-connector-java-5.1.33-bin.jar"/>
 
     <context id="MySQLTables" targetRuntime="MyBatis3">
 
@@ -13,11 +13,11 @@
             <property name="replaceString" value="Criteria"/>
         </plugin>
 
-        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />
-        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
-				<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
         <plugin type="org.mybatis.generator.plugins.CachePlugin">
-          <property name="enableSubPackages" value="true" />
+            <property name="enableSubPackages" value="true"/>
         </plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
@@ -26,17 +26,22 @@
                         password="root">
         </jdbcConnection>
 
-        <javaModelGenerator targetPackage="com.enniu.loan.domain" targetProject="../src/main/java">
+        <!--
+            NOTE: When targetProject is set to "MAVEN", the default output is target/generated-sources/mybatis-generator
+        -->
+
+        <javaModelGenerator targetPackage="com.enniu.loan.domain" targetProject="MAVEN"><!-- src/generated/java -->
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="com.enniu.loan.persistence" targetProject="../src/main/resources">
+        <sqlMapGenerator targetPackage="com.enniu.loan.persistence"
+                         targetProject="MAVEN"> <!-- src/generated/resources -->
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.enniu.loan.persistence"
-                             targetProject="../src/main/java">
+                             targetProject="MAVEN"> <!-- src/generated/java -->
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
@@ -50,6 +55,7 @@
             -->
         </table>
 
+        <table schema="loan" tableName="loan_object" domainObjectName="LoanObject" />
         <table schema="loan" tableName="interest_penalty_log" domainObjectName="InterestPenaltyLog"/>
         <table schema="loan" tableName="repayment_log" domainObjectName="RepaymentLog"/>
 

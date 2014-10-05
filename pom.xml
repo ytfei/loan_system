@@ -14,6 +14,11 @@
         <roo.version>1.2.5.RELEASE</roo.version>
         <slf4j.version>1.7.5</slf4j.version>
         <spring.version>3.2.6.RELEASE</spring.version>
+
+        <!-- mybatis generator configuration -->
+        <mybatis.generator.overwrite>true</mybatis.generator.overwrite>
+        <mybatis.generator.configurationFile>src/main/resources/generatorConfig.xml</mybatis.generator.configurationFile>
+        <mybatis.generator.outputDirectory>src/generated-sources/mybatis-generator</mybatis.generator.outputDirectory>
     </properties>
     <repositories>
         <repository>
@@ -313,6 +318,19 @@
     </dependencies>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.3-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <id>Generate MyBatis Artifacts</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
