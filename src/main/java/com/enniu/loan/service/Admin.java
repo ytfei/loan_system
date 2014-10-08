@@ -43,11 +43,13 @@ public class Admin {
 
         checkResult(orderList);
 
+        loanOrderMapper.x();
+
         return "admin/index";
     }
 
     private void checkResult(List<LoanOrder> orderList) {
-        if (orderList == null) {
+        if (orderList == null || orderList.size() == 0) {
             System.out.println("where is my account?");
         } else {
             System.out.println("Credit card number is: " + orderList.get(0));

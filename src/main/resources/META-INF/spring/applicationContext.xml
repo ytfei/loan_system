@@ -97,6 +97,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="typeAliasesPackage" value="com.enniu.loan.domain"/>
+        <property name="mapperLocations" value="classpath:com/enniu/**/*.xml"/>
     </bean>
 
     <!-- scan for mappers and let them be autowired -->
